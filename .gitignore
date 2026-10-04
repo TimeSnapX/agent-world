@@ -1,0 +1,8 @@
+node_modules/
+test-results/
+.work/
+.cache/
+raw/
+check.png
+rooms-preview.png
+sprites-preview.png

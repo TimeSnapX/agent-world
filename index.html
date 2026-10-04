@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <title>Agent World</title>
+    <meta name="description" content="TimeSnap's AI agents, living in a walkable pixel world." />
+    <meta name="theme-color" content="#0b0e14" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <script>
+      // Register the service worker as early as possible (scoped to /agent-world/).
+      if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(function () {});
+    </script>
+  </head>
+  <body>
+    <canvas id="world" tabindex="0" aria-label="Agent World. Use arrow keys or WASD to walk, E to talk, M for the map."></canvas>
+
+    <header class="hud">
+      <div class="where"><b id="room-name">Loading…</b><small id="room-sub"></small></div>
+      <button id="map-btn" class="btn" type="button" aria-label="Map and fast travel">▦ Map</button>
+    </header>
+
+    <button id="prompt" class="prompt" type="button" hidden></button>
+    <p class="keys-hint">Arrows/WASD walk · E talk · M map · click to walk</p>
+
+    <div class="controls">
+      <div id="pad" class="pad" aria-label="Movement pad" role="application">
+        <span class="arrow up">▲</span><span class="arrow down">▼</span><span class="arrow left">◀</span><span class="arrow right">▶</span>
+        <div id="knob" class="knob"></div>
+      </div>
+      <button id="btn-a" class="abtn" type="button" aria-label="Talk or read">A</button>
+    </div>
+
+    <aside id="sheet" class="sheet" role="dialog" aria-modal="false" hidden>
+      <button id="sheet-close" class="x" type="button" aria-label="Close">✕</button>
+      <div id="sheet-body"></div>
+    </aside>
+
+    <div id="map" class="map" role="dialog" aria-label="Map and fast travel" hidden>
+      <div class="map-card">
+        <header><h2>Fast travel</h2><button id="map-close" class="x" type="button" aria-label="Close map">✕</button></header>
+        <div id="map-grid" class="map-grid"></div>
+        <ul id="map-list" class="map-list"></ul>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

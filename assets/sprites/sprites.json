@@ -1,0 +1,31 @@
+{
+ "frame_size": 48,
+ "hd_frame_size": 96,
+ "rows": [
+  "down",
+  "left",
+  "right",
+  "up"
+ ],
+ "frames_per_row": 4,
+ "sprites": [
+  "apollo",
+  "argus",
+  "artemis",
+  "athena",
+  "atlas",
+  "chronos",
+  "daedalus",
+  "fortuna",
+  "hades",
+  "hephaestus",
+  "hermes",
+  "hestia",
+  "hygieia",
+  "iris",
+  "plutus",
+  "prometheus",
+  "thoth",
+  "timesnap"
+ ]
+}
