@@ -1,5 +1,5 @@
 {
-  "id": "/agent-world/",
+  "id": "/agent-world/?app=agent-world",
   "name": "Agent World",
   "short_name": "Agent World",
   "description": "TimeSnap's AI agents, living in a walkable pixel world.",

@@ -6,7 +6,7 @@
  * - status.json (live board data) is never cached, so boards never show stale numbers.
  * Bump VERSION to drop old caches.
  */
-const VERSION = "7616d988";
+const VERSION = "40d1f416";
 const CACHE = `agent-world-${VERSION}`;
 const SCOPE = new URL(self.registration.scope);
 const PRECACHE = ["./", "app/index-B1VWh27D.css", "app/index-DwjQPffv.js", "art.json", "favicon.png", "icons/apple-touch-icon.png", "icons/icon-192.png", "icons/icon-512.png", "icons/icon-maskable-512.png", "manifest.webmanifest"];

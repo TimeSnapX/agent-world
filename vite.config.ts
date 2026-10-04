@@ -63,8 +63,9 @@ function artPlugin(): Plugin {
       const walk = (d: string, rel = "") => { for (const f of fs.readdirSync(d)) { const p = path.join(d, f), r = rel + f; if (fs.statSync(p).isDirectory()) { if (f !== "assets") walk(p, r + "/"); } else if (!["sw.js", "status.json", "index.html"].includes(r) && !r.endsWith(".map")) files.push(r); } };
       walk(outDir);
       const swPath = path.join(outDir, "sw.js");
-      const sw = fs.readFileSync(swPath, "utf8").replace("/*__PRECACHE__*/", files.map((f) => JSON.stringify(f)).join(", "))
-        .replace(/const VERSION = "[^"]*";/, `const VERSION = "${crypto.createHash("sha1").update(files.join()).update(art.v).digest("hex").slice(0, 8)}";`);
+      const swSrc = fs.readFileSync(swPath, "utf8");
+      const sw = swSrc.replace("/*__PRECACHE__*/", files.map((f) => JSON.stringify(f)).join(", "))
+        .replace(/const VERSION = "[^"]*";/, `const VERSION = "${files.reduce((h, f) => f === "./" ? h : h.update(fs.readFileSync(path.join(outDir, f))), crypto.createHash("sha1").update(files.join()).update(art.v).update(swSrc)).digest("hex").slice(0, 8)}";`);
       fs.writeFileSync(swPath, sw);
       fs.writeFileSync(path.join(outDir, ".nojekyll"), "");
     },
